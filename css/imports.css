@@ -1,0 +1,14 @@
+/**
+ * Imports
+*/
+
+@import "/css/components/variables.css";
+@import "/css/components/buttons.css";
+@import "/css/components/panel.css";
+@import "/css/components/block.css";
+@import "/css/components/module.css";
+@import "/css/components/last-number.css";
+@import "/css/components/last-number-list.css";
+@import "/css/components/game-mode.css";
+@import "/css/components/game-score.css";
+@import "/css/components/game-board.css";

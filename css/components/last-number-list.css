@@ -1,0 +1,29 @@
+/**
+ * Last Number List CSS
+*/
+
+.last-number-list {
+}
+
+.last-number-list .number-list {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 10px;
+}
+
+.last-number-list .number-list .item {
+}
+
+.last-number-list .number-list .item > span {
+  background-color: white;
+  color: rgb(25, 25, 112);
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-bold);
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

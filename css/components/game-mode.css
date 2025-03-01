@@ -1,0 +1,89 @@
+/**
+ * Game Mode CSS
+*/
+
+.game-mode {
+  display: grid;
+  gap: 10px;
+  align-content: center;
+}
+
+.layout-mode {
+  width: 100%;
+}
+
+.grid-game-mode {
+  background-color: rgb(112, 128, 144);
+  padding: 4px;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.grid-game-mode .group {
+  display: grid;
+}
+
+.grid-game-mode .cell {
+  padding: 1px;
+}
+
+.options-mode {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-ggm {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 2px;
+}
+
+.letter .btn-ggm {
+  background-color: rgb(192, 192, 192);
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+  cursor: inherit;
+}
+
+.letter .btn-ggm:hover {
+}
+
+.letter .btn-ggm:active {
+}
+
+.num .btn-ggm {
+  background-color: rgb(229, 228, 226);
+  color: rgb(205 204 204);
+  font-size: 0.6rem;
+}
+
+.num .btn-ggm:hover {
+  background-color: rgb(243, 229, 171);
+}
+
+.num .btn-ggm:active {
+  background-color: rgb(251, 236, 93);
+  color: rgb(251, 236, 93);
+}
+
+.btn-opm {
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 8px 16px;
+  font-weight: var(--font-weight-bold);
+  border: none;
+  border-radius: 4px;
+}
+
+.btn-opm:hover {
+  background-color: rgb(135, 206, 235);
+  color: var(--color-primary);
+}
+
+.btn-opm:active {
+  background-color: rgb(0, 150, 255);
+  color: white;
+}

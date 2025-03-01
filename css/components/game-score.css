@@ -1,0 +1,83 @@
+/**
+ * Game Escore CSS
+*/
+
+.game-score {
+  width: 100%;
+  padding: 10px;
+}
+.game-score .display-info {
+  background-color: red;
+  width: 100%;
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.display {
+  background-color: rgb(248, 249, 249);
+  color: rgb(25, 25, 112);
+  font-size: 1.4rem;
+  font-weight: var(--font-weight-bold);
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-score .status-list {
+  background-color: rgb(54, 69, 79);
+  width: 100%;
+  max-height: 40%;
+  padding: 8px;
+  list-style: none;
+  border: 2px solid rgb(137, 148, 153);
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  overflow-y: auto;
+}
+
+.game-score .item {
+  background-color: rgb(115, 147, 179);
+  color: white;
+  font-size: 0.75em;
+  padding: 3px;
+  border-radius: 4px;
+  display: grid;
+  gap: 3px;
+  grid-template-columns: 20px 16px auto;
+}
+
+.game-score .index-num {
+  background-color: rgb(70, 130, 180);
+  color: rgb(167, 199, 231);
+  font-size: 0.55rem;
+  padding: 3px;
+  border-radius: 4px 0 0 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-score .status {
+  background-color: rgb(240, 255, 255);
+  border-radius: 50%;
+  border: 1px solid;
+  margin: 2px;
+}
+
+.game-score .winner {
+  background-color: rgb(130, 224, 170);
+  border-color: rgb(52, 73, 94);
+}
+
+.game-score .started {
+  background-color: rgb(240, 178, 122);
+  border-color: rgb(52, 73, 94);
+}
+
+.game-score .id-ticket {
+  padding-left: 16px;
+}

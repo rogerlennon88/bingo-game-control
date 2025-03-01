@@ -1,0 +1,19 @@
+/**
+ * Last Number CSS
+*/
+
+.last-number {
+}
+
+.last-number .num-1 {
+  background-color: white;
+  color: rgb(25, 25, 112);
+  font-size: 4rem;
+  font-weight: var(--font-weight-bold);
+  padding: 30px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

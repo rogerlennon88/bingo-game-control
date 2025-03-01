@@ -1,0 +1,15 @@
+/**
+ * Module CSS
+*/
+
+.module {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.mid .module {
+  background-color: rgb(226, 223, 210);
+}

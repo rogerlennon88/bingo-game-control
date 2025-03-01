@@ -1,0 +1,27 @@
+/**
+ * Panel CSS
+*/
+
+.panel {
+  display: grid;
+  justify-content: center;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.mid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.mid .block {
+  padding: 10px;
+}
+
+.bot {
+  background-color: rgb(233, 220, 201);
+  align-items: center;
+}
