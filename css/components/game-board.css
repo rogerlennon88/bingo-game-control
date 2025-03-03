@@ -47,11 +47,20 @@
 }
 
 .num .btn-ggb:hover {
-  background-color: 	rgb(255, 248, 220);
-  color: rgba(52, 73, 94, .5);
-}
+  background-color: rgb(255, 248, 220);
+  color: rgba(52, 73, 94, 0.5);
+} 
 
 .num .btn-ggb:active {
-    background-color: 	rgb(137, 148, 153);
-    color: rgb(250, 249, 246);
+  background-color: rgb(137, 148, 153);
+  color: rgb(250, 249, 246);
+}
+
+.num .btn-ggb.marked {
+  background-color: rgb(137, 148, 153);
+  color: rgb(250, 249, 246);
+}
+
+.num .btn-ggb.marked:disabled {
+  cursor: not-allowed;
 }
