@@ -2,6 +2,8 @@
  * game-board.js
  */
 
+import { bingoController } from './bingo-controller.js';
+
 class GameBoard {
   constructor(boardElementId = 'grid-game-board') {
     this.boardElementId = boardElementId;
@@ -52,6 +54,7 @@ class GameBoard {
   handleBallClick(event) {
     if (event.target.classList.contains('btn-ggb')) {
       const ballNumber = parseInt(event.target.id);
+      bingoController.markBall(ballNumber); // Llamar a bingoController.markBall
       this.markBall(ballNumber);
       this.updateBallHistory(ballNumber);
       this.updateLastBallDisplay(ballNumber);
