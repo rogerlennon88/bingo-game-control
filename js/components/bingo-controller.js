@@ -1,10 +1,15 @@
 // bingo-controller.js
+
 class BingoController {
   constructor() {
-    this.bingoCards = new Map(); // Almacenar las tablas por ID
-    this.markedBalls = new Set(); // Almacenar las balotas marcadas
-    this.selectedPattern = new Set(); // Almacenar el patrón seleccionado
+    this.bingoCards = new Map();
+    this.markedBalls = new Set();
+    this.selectedPattern = new Set();
     this.loadBingoCards();
+    this.onCardsLoaded = null;
+    this.onBallMarked = null;
+    this.onWinnerDetected = null;
+    this.winners = new Set();
   }
 
   async loadBingoCards() {
@@ -18,50 +23,46 @@ class BingoController {
   }
 
   processBingoCards(csvData) {
-    const lines = csvData.split("\n");
-    const headers = lines[0].split(",");
-
+    const lines = csvData.split('\n');
+    const headers = lines[0].split(',');
     for (let i = 1; i < lines.length; i++) {
-      const values = lines[i].split(",");
+      const values = lines[i].split(',');
       if (values.length === headers.length) {
         const card = {};
-        const cells = {}; // Objeto para almacenar las celdas
+        const cells = {};
         for (let j = 0; j < headers.length; j++) {
-          if (headers[j] === "id") {
-            card.id = values[j]; // Mantener el id separado
+          if (headers[j] === 'id') {
+            card.id = values[j];
           } else {
-            cells[headers[j]] = values[j]; // Almacenar las celdas en el objeto cells
+            cells[headers[j]] = values[j];
           }
         }
-        card.cells = cells; // Agregar el objeto cells al objeto card
+        card.cells = cells;
         this.bingoCards.set(card.id, card);
       }
     }
-
-    console.log("Tablas de Bingo cargadas:", this.bingoCards);
+    if (this.onCardsLoaded) {
+      this.onCardsLoaded(this.bingoCards.size);
+    }
   }
 
   markBall(ballNumber) {
     this.markedBalls.add(ballNumber);
     this.checkPatterns(ballNumber); // Llamar a checkPatterns con la balota marcada
     console.log("Balota marcada:", ballNumber);
-    console.log("Balotas marcadas:", this.markedBalls);
+    // console.log("Balotas marcadas:", this.markedBalls);
   }
 
   checkPatterns(ballNumber) {
-    console.log("checkPatterns called with ballNumber:", ballNumber); // Agregar console.log
     this.bingoCards.forEach((card, cardId) => {
-      console.log("Iterating card:", cardId); // Agregar console.log
       for (const key in card.cells) {
         if (card.cells[key] === ballNumber.toString()) {
-          console.log(
-            `Tabla ${cardId} contiene la balota ${ballNumber} en la posición ${key}`
-          );
           this.updateCardState(cardId, key);
           this.verifyPattern(cardId);
         }
       }
     });
+    this.updateCardRanking();
   }
 
   updateCardState(cardId, position) {
@@ -69,15 +70,15 @@ class BingoController {
     if (!card.markedPositions) {
       card.markedPositions = new Set();
     }
-    card.markedPositions.add(position);
-    console.log(
-      `Posiciones marcadas en la tabla ${cardId}:`,
-      card.markedPositions
-    );
+    if (!card.markedPositions.has(position) && this.selectedPattern.has(position)) { // Verificar si la posición pertenece al patrón
+      card.markedPositions.add(position);
+      card.lastMarkedTime = Date.now();
+      console.log(`Tabla ${cardId} posición marcada:`, position);
+    }
   }
 
   verifyPattern(cardId) {
-    console.log("verifyPattern called with cardId:", cardId); // Agregar console.log
+    console.log(`Verificando patrón para tabla ${cardId}`); // Agregar console.log
     const card = this.bingoCards.get(cardId);
     if (!card.markedPositions) {
       return;
@@ -94,7 +95,32 @@ class BingoController {
       }
     }
     if (patternComplete) {
-      console.log(`¡La tabla ${cardId} ha completado el patrón!`);
+      this.winners.add(cardId);
+      card.status = 'winner';
+      if (this.onWinnerDetected) {
+        this.onWinnerDetected(this.winners.size);
+      }
+    } else if (pattern.size - card.markedPositions.size === 1) {
+      card.status = 'started';
+    } else {
+      card.status = '';
+    }
+  }
+
+  updateCardRanking() {
+    const cards = Array.from(this.bingoCards.values());
+    const rankedCards = cards
+      .filter(card => card.status === 'winner' || card.status === 'started')
+      .sort((a, b) => {
+        const aMissing = this.selectedPattern.size - (a.markedPositions ? a.markedPositions.size : 0);
+        const bMissing = this.selectedPattern.size - (b.markedPositions ? b.markedPositions.size : 0);
+        if (aMissing !== bMissing) {
+          return aMissing - bMissing;
+        }
+        return (a.lastMarkedTime || 0) - (b.lastMarkedTime || 0);
+      });
+    if (this.onBallMarked) {
+      this.onBallMarked(rankedCards);
     }
   }
 

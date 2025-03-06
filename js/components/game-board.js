@@ -1,6 +1,4 @@
-/**
- * game-board.js
- */
+// game-board.js
 
 import { bingoController } from './bingo-controller.js';
 

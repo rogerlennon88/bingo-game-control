@@ -80,9 +80,10 @@ class GameMode {
   }
 
   handleSelectButtonClick() {
-    if (confirm("¿Confirmar Modo de Juego?")) {
+    if (confirm('¿Confirmar Modo de Juego?')) {
       this.enableGameBoard();
       bingoController.selectPattern(this.selectedPattern);
+      bingoController.loadBingoCards(); // Cargar las tablas después de confirmar el modo de juego
     }
   }
 
