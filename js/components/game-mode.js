@@ -1,6 +1,4 @@
-/**
- * game-mode.js
- */
+// game-mode.js
 
 import { bingoController } from "./bingo-controller.js";
 
@@ -83,7 +81,7 @@ class GameMode {
     if (confirm('¿Confirmar Modo de Juego?')) {
       this.enableGameBoard();
       bingoController.selectPattern(this.selectedPattern);
-      bingoController.loadBingoCards(); // Cargar las tablas después de confirmar el modo de juego
+      bingoController.loadBingoCards();
     }
   }
 

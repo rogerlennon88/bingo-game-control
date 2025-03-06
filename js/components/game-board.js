@@ -52,7 +52,7 @@ class GameBoard {
   handleBallClick(event) {
     if (event.target.classList.contains('btn-ggb')) {
       const ballNumber = parseInt(event.target.id);
-      bingoController.markBall(ballNumber); // Llamar a bingoController.markBall
+      bingoController.markBall(ballNumber);
       this.markBall(ballNumber);
       this.updateBallHistory(ballNumber);
       this.updateLastBallDisplay(ballNumber);

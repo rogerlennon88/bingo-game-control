@@ -32,7 +32,7 @@ class GameScore {
 
   updateStatusList(cards) {
     this.disableGameBoard();
-    this.statusList.innerHTML = ''; // Limpiar la lista
+    this.statusList.innerHTML = '';
     cards.forEach((card, index) => {
       const listItem = document.createElement('li');
       listItem.classList.add('item', 'ticket');

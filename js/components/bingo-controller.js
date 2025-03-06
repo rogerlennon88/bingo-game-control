@@ -48,7 +48,7 @@ class BingoController {
 
   markBall(ballNumber) {
     this.markedBalls.add(ballNumber);
-    this.checkPatterns(ballNumber); // Llamar a checkPatterns con la balota marcada
+    this.checkPatterns(ballNumber);
     console.log("Balota marcada:", ballNumber);
     // console.log("Balotas marcadas:", this.markedBalls);
   }
@@ -70,7 +70,7 @@ class BingoController {
     if (!card.markedPositions) {
       card.markedPositions = new Set();
     }
-    if (!card.markedPositions.has(position) && this.selectedPattern.has(position)) { // Verificar si la posición pertenece al patrón
+    if (!card.markedPositions.has(position) && this.selectedPattern.has(position)) {
       card.markedPositions.add(position);
       card.lastMarkedTime = Date.now();
       console.log(`Tabla ${cardId} posición marcada:`, position);
@@ -78,7 +78,7 @@ class BingoController {
   }
 
   verifyPattern(cardId) {
-    console.log(`Verificando patrón para tabla ${cardId}`); // Agregar console.log
+    console.log(`Verificando patrón para tabla ${cardId}`);
     const card = this.bingoCards.get(cardId);
     if (!card.markedPositions) {
       return;
