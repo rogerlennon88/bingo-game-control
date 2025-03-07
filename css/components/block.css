@@ -3,6 +3,12 @@
 */
 
 .block {
-  display: grid;
-  gap: 10px;
+  background-color:rgb(249, 246, 238);
+  padding: var(--grid-gap);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 2px solid rgb(237, 234, 222);
 }

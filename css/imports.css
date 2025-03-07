@@ -2,11 +2,20 @@
  * Imports
 */
 
+/* Variables */
 @import "/css/components/variables.css";
-@import "/css/components/buttons.css";
+
+/* Layout */
+@import "/css/components/section.css";
 @import "/css/components/panel.css";
 @import "/css/components/block.css";
 @import "/css/components/module.css";
+
+/* Components */
+@import "/css/components/buttons.css";
+
+/* Modules */
+@import "/css/components/game-cards-loader.css";
 @import "/css/components/last-number.css";
 @import "/css/components/last-number-list.css";
 @import "/css/components/game-mode.css";

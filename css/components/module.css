@@ -5,10 +5,16 @@
 .module {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: nowrap;
   border-radius: 8px;
 }
+.module > div {
+  margin-bottom: var(--grid-gap);  
+}
+.module > div:last-child {
+  margin-bottom: 0;  
+}
+
 
 .mid .module {
   background-color: rgb(226, 223, 210);
