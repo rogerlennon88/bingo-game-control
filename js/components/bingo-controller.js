@@ -31,8 +31,8 @@ class BingoController {
         const card = {};
         const cells = {};
         for (let j = 0; j < headers.length; j++) {
-          if (headers[j] === 'id') {
-            card.id = values[j];
+          if (headers[j] === 'id' || headers[j] === 'serial') {
+            card[headers[j]] = values[j];
           } else {
             cells[headers[j]] = values[j];
           }
