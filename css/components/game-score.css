@@ -17,7 +17,8 @@
   background-color: rgb(248, 249, 249);
   color: rgb(25, 25, 112);
   font-weight: var(--font-weight-bold);
-  padding: 8px;
+  height: 32px;
+  padding: 2px;
   display: flex;
   justify-content: center;
   align-items: center;

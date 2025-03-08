@@ -74,12 +74,12 @@ class GameBoard {
   }
 
   updateLastBallDisplay(ballNumber) {
-    const lastBallDisplay = document.querySelector('.last-number .num-1');
+    const lastBallDisplay = document.querySelector('#last-number .num-1');
     lastBallDisplay.textContent = ballNumber.toString().padStart(2, '0');
   }
 
   updateLastBallsList() {
-    const lastBallsList = document.querySelectorAll('.last-number-list .num-2, .last-number-list .num-3, .last-number-list .num-4, .last-number-list .num-5');
+    const lastBallsList = document.querySelectorAll('#last-number-list .num-2, #last-number-list .num-3, #last-number-list .num-4, #last-number-list .num-5');
     const history = this.ballHistory.slice(-5, -1).reverse();
     lastBallsList.forEach((item, index) => {
       item.textContent = history[index] ? history[index].toString().padStart(2, '0') : '00';
