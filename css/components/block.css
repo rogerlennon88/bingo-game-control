@@ -12,3 +12,9 @@
   border-radius: 8px;
   border: 2px solid rgb(237, 234, 222);
 }
+.block > .module {
+  margin-bottom: var(--grid-gap);
+}
+.block > .module:last-child {
+  margin-bottom: 0;
+}

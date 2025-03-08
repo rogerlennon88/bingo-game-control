@@ -2,84 +2,93 @@
  * Game Escore CSS
 */
 
-.game-score {
+#game-score {
   width: 100%;
-  padding: 10px;
 }
-.game-score .display-info {
-  background-color: red;
-  width: 100%;
-  display: flex;
+#game-score .display-info {
+  background-color: rgb(255, 255, 255);
+  padding: 4px;
   margin-bottom: 8px;
+  border: 1px solid rgba(233, 220, 201, 0.75);
+  border-radius: 8px;
 }
 
 .display {
   background-color: rgb(248, 249, 249);
   color: rgb(25, 25, 112);
-  font-size: 1.4rem;
   font-weight: var(--font-weight-bold);
-  width: 100%;
-  min-height: 48px;
+  padding: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
-.game-score .status-list {
+#game-score .status-list {
   background-color: rgb(54, 69, 79);
-  width: 100%;
   height: 240px;
   padding: 8px;
   list-style: none;
-  border: 2px solid rgb(137, 148, 153);
-  border-radius: 4px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: max-content;
-  align-items: start;
-  gap: 2px;
+  border: 4px solid rgba(233, 220, 201, 0.75);
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
   overflow-y: auto;
 }
 
-.game-score .item {
+#game-score .item {
   background-color: rgb(115, 147, 179);
   color: white;
-  font-size: 0.75em;
-  padding: 3px;
-  border-radius: 4px;
+  font-size: 0.7em;
+  width: calc(100% / 4);
+  margin: 2px;
+  padding: 4px;
+  border-radius: 2px;
   display: grid;
   gap: 3px;
-  grid-template-columns: 20px 16px auto;
+  grid-template-columns: repeat(2, 16px) 1fr;
+  place-items: center;
+  overflow: hidden;
 }
 
-.game-score .index-num {
+#game-score .index-num {
   background-color: rgb(70, 130, 180);
   color: rgb(167, 199, 231);
-  font-size: 0.55rem;
-  padding: 3px;
-  border-radius: 4px 0 0 4px;
+  font-size: 0.8rem;
+  width: 16px;
+  height: 12px;
+  border-radius: 2px 0 0 2px;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
-.game-score .status {
+#game-score .status {
   background-color: rgb(240, 255, 255);
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  border: 1px solid;
-  margin: 2px;
+  border: 1px solid rgba(52, 73, 94, 0.75);
 }
 
-.game-score .winner {
+#game-score .winner {
   background-color: rgb(130, 224, 170);
-  border-color: rgb(52, 73, 94);
+  border: 1px solid rgba(52, 73, 94, 1);
 }
 
-.game-score .started {
+#game-score .started {
   background-color: rgb(240, 178, 122);
-  border-color: rgb(52, 73, 94);
+  border: 1px solid rgba(52, 73, 94, 1);
 }
 
-.game-score .id-ticket {
-  padding-left: 16px;
+#game-score .id-ticket {
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  display: flex;
+  overflow: hidden;
+  justify-content: flex-end;
 }

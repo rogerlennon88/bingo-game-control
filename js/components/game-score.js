@@ -5,7 +5,7 @@ import { bingoController } from './bingo-controller.js';
 class GameScore {
   constructor(scoreElementId = 'game-score') {
     this.scoreElementId = scoreElementId;
-    this.scoreElement = document.querySelector('.game-score');
+    this.scoreElement = document.querySelector('#game-score');
     this.displayInfo = this.scoreElement.querySelector('.display');
     this.statusList = this.scoreElement.querySelector('.status-list');
     this.gameBoard = document.getElementById('grid-game-board');
