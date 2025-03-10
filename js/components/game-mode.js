@@ -1,13 +1,14 @@
 // game-mode.js
 
 import { bingoController } from "./bingo-controller.js";
+import { gameControl } from "./game-control.js";
 
 class GameMode {
   constructor(modeElementId = "grid-game-mode") {
     this.modeElementId = modeElementId;
     this.selectedPattern = new Set();
-    this.handleSelectClickBound = this.handleSelectButtonClick.bind(this); // Almacenar referencia
-    this.handleRestartGameBound = this.handleRestartGame.bind(this); // Almacenar referencia
+    this.handleSelectClickBound = this.handleSelectButtonClick.bind(this);
+    this.handleRestartGameBound = this.handleRestartGame.bind(this);
     this.initializeMode();
   }
 
@@ -20,37 +21,34 @@ class GameMode {
     this.renderMode(mode);
     mode.addEventListener("click", this.handlePatternClick.bind(this));
     this.selectButton = document.getElementById("btn-select-mode");
-    this.selectButton.disabled = true;
-    this.selectButton.addEventListener(
-      "click",
-      this.handleSelectButtonClick.bind(this)
-    );
+    this.selectButton.classList.add("lock");
+    this.selectButton.addEventListener("click", this.handleSelectClickBound);
     this.gameBoard = document.getElementById("grid-game-board");
     this.disableGameBoard();
   }
 
   renderMode(mode) {
-    const letters = ['B', 'I', 'N', 'G', 'O'];
+    const letters = ["B", "I", "N", "G", "O"];
     for (let i = 0; i < 5; i++) {
-      const group = document.createElement('div');
-      group.classList.add('group');
-      const letterCell = document.createElement('div');
-      letterCell.classList.add('cell', 'letter');
-      const letterButton = document.createElement('button');
+      const group = document.createElement("div");
+      group.classList.add("group");
+      const letterCell = document.createElement("div");
+      letterCell.classList.add("cell", "letter");
+      const letterButton = document.createElement("button");
       letterButton.id = `${letters[i].toLowerCase()}-ggm`;
-      letterButton.classList.add('btn', 'btn-ggm', 'lock');
+      letterButton.classList.add("btn", "btn-ggm", "lock");
       letterButton.textContent = letters[i];
       letterCell.appendChild(letterButton);
       group.appendChild(letterCell);
       for (let j = 1; j <= 5; j++) {
-        const numberCell = document.createElement('div');
-        numberCell.classList.add('cell', 'num');
-        const numberButton = document.createElement('button');
+        const numberCell = document.createElement("div");
+        numberCell.classList.add("cell", "num");
+        const numberButton = document.createElement("button");
         numberButton.id = `${letters[i].toLowerCase()}${j}`;
-        numberButton.classList.add('btn', 'btn-ggm');
+        numberButton.classList.add("btn", "btn-ggm");
         numberButton.textContent = `${letters[i].toLowerCase()}${j}`;
-        if (letters[i].toLowerCase() === 'n' && j === 3) {
-          numberButton.classList.add('lock');
+        if (letters[i].toLowerCase() === "n" && j === 3) {
+          numberButton.classList.add("lock");
         }
         numberCell.appendChild(numberButton);
         group.appendChild(numberCell);
@@ -79,20 +77,24 @@ class GameMode {
   }
 
   updateSelectButtonState() {
-    this.selectButton.disabled = this.selectedPattern.size < 4;
+    if (this.selectedPattern.size >= 4) {
+      this.selectButton.classList.remove("lock");
+    } else {
+      this.selectButton.classList.add("lock");
+    }
   }
 
   disableModeButtons() {
-    const buttons = document.querySelectorAll('.btn-ggm');
-    buttons.forEach(button => {
-      button.classList.add('lock');
+    const buttons = document.querySelectorAll(".btn-ggm");
+    buttons.forEach((button) => {
+      button.classList.add("lock");
     });
   }
 
   disableNumberButtons() {
-    const buttons = document.querySelectorAll('.btn-ggm:not(.lock)');
-    buttons.forEach(button => {
-      button.classList.add('lock');
+    const buttons = document.querySelectorAll(".btn-ggm:not(.lock)");
+    buttons.forEach((button) => {
+      button.classList.add("lock");
     });
   }
 
@@ -104,15 +106,26 @@ class GameMode {
       bingoController.loadBingoCards();
       this.disableModeButtons();
       this.disableNumberButtons();
-      this.selectButton.classList.add('lock'); // Agregar clase .lock al botón
-      this.selectButton.removeEventListener('click', this.handleSelectClickBound); // Remover event listener
+      this.selectButton.classList.add("lock");
+      this.selectButton.removeEventListener("click", this.handleSelectClickBound);
+      gameControl.enableControlButtons();
     }
   }
 
   handleRestartGame() {
-    if (confirm('¿Reiniciar Juego?')) {
+    if (confirm("¿Reiniciar Juego?")) {
       this.resetGame();
+      gameControl.disableControlButtons();
+      this.enableModeButtons();
+      this.disableGameBoard();
     }
+  }
+
+  enableModeButtons() {
+    const buttons = document.querySelectorAll(".btn-ggm");
+    buttons.forEach((button) => {
+      button.classList.remove("lock");
+    });
   }
 
   disableGameBoard() {
@@ -127,6 +140,11 @@ class GameMode {
     buttons.forEach((button) => {
       button.classList.remove("lock");
     });
+  }
+
+  resetGame() {
+    // Implementar lógica de reinicio del juego aquí
+    console.log("Juego reiniciado");
   }
 }
 
