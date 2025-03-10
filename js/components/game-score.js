@@ -13,7 +13,6 @@ class GameScore {
   }
 
   initializeScore() {
-    bingoController.onCardsLoaded = this.showCardsLoadedMessage.bind(this);
     bingoController.onBallMarked = this.updateStatusList.bind(this);
     bingoController.onWinnerDetected = this.showWinnerMessage.bind(this);
   }

@@ -6,6 +6,8 @@ class GameMode {
   constructor(modeElementId = "grid-game-mode") {
     this.modeElementId = modeElementId;
     this.selectedPattern = new Set();
+    this.handleSelectClickBound = this.handleSelectButtonClick.bind(this); // Almacenar referencia
+    this.handleRestartGameBound = this.handleRestartGame.bind(this); // Almacenar referencia
     this.initializeMode();
   }
 
@@ -28,25 +30,28 @@ class GameMode {
   }
 
   renderMode(mode) {
-    const letters = ["B", "I", "N", "G", "O"];
+    const letters = ['B', 'I', 'N', 'G', 'O'];
     for (let i = 0; i < 5; i++) {
-      const group = document.createElement("div");
-      group.classList.add("group");
-      const letterCell = document.createElement("div");
-      letterCell.classList.add("cell", "letter");
-      const letterButton = document.createElement("button");
+      const group = document.createElement('div');
+      group.classList.add('group');
+      const letterCell = document.createElement('div');
+      letterCell.classList.add('cell', 'letter');
+      const letterButton = document.createElement('button');
       letterButton.id = `${letters[i].toLowerCase()}-ggm`;
-      letterButton.classList.add("btn", "btn-ggm");
+      letterButton.classList.add('btn', 'btn-ggm', 'lock');
       letterButton.textContent = letters[i];
       letterCell.appendChild(letterButton);
       group.appendChild(letterCell);
       for (let j = 1; j <= 5; j++) {
-        const numberCell = document.createElement("div");
-        numberCell.classList.add("cell", "num");
-        const numberButton = document.createElement("button");
+        const numberCell = document.createElement('div');
+        numberCell.classList.add('cell', 'num');
+        const numberButton = document.createElement('button');
         numberButton.id = `${letters[i].toLowerCase()}${j}`;
-        numberButton.classList.add("btn", "btn-ggm");
+        numberButton.classList.add('btn', 'btn-ggm');
         numberButton.textContent = `${letters[i].toLowerCase()}${j}`;
+        if (letters[i].toLowerCase() === 'n' && j === 3) {
+          numberButton.classList.add('lock');
+        }
         numberCell.appendChild(numberButton);
         group.appendChild(numberCell);
       }
@@ -77,29 +82,50 @@ class GameMode {
     this.selectButton.disabled = this.selectedPattern.size < 4;
   }
 
+  disableModeButtons() {
+    const buttons = document.querySelectorAll('.btn-ggm');
+    buttons.forEach(button => {
+      button.classList.add('lock');
+    });
+  }
+
+  disableNumberButtons() {
+    const buttons = document.querySelectorAll('.btn-ggm:not(.lock)');
+    buttons.forEach(button => {
+      button.classList.add('lock');
+    });
+  }
+
   handleSelectButtonClick() {
-    if (confirm('¿Confirmar Modo de Juego?')) {
+    const cardCount = bingoController.bingoCards.size;
+    if (confirm(`Total de tablas activas: ${cardCount} ¿Confirmar Modo de Juego?`)) {
       this.enableGameBoard();
       bingoController.selectPattern(this.selectedPattern);
       bingoController.loadBingoCards();
+      this.disableModeButtons();
+      this.disableNumberButtons();
+      this.selectButton.classList.add('lock'); // Agregar clase .lock al botón
+      this.selectButton.removeEventListener('click', this.handleSelectClickBound); // Remover event listener
+    }
+  }
+
+  handleRestartGame() {
+    if (confirm('¿Reiniciar Juego?')) {
+      this.resetGame();
     }
   }
 
   disableGameBoard() {
-    this.gameBoard.style.pointerEvents = "none";
     const buttons = this.gameBoard.querySelectorAll(".btn-ggb");
     buttons.forEach((button) => {
-      button.style.cursor = "default";
-      button.style.pointerEvents = "none";
+      button.classList.add("lock");
     });
   }
 
   enableGameBoard() {
-    this.gameBoard.style.pointerEvents = "auto";
     const buttons = this.gameBoard.querySelectorAll(".btn-ggb");
     buttons.forEach((button) => {
-      button.style.cursor = "pointer";
-      button.style.pointerEvents = "auto";
+      button.classList.remove("lock");
     });
   }
 }
