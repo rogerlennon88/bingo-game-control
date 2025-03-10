@@ -64,7 +64,7 @@ main {
 }
 
 header {
-  background-color: 	rgb(115, 147, 179);
+  background-color: rgb(115, 147, 179);
   height: 48px;
   padding: 0 16px;
   display: flex;
@@ -75,7 +75,6 @@ header {
 .logo {
   width: 128px;
 }
-
 .title {
   margin-bottom: 0;
 }
@@ -83,7 +82,9 @@ header {
   color: gray;
   font-size: 1.2rem;
 }
-
+.item {
+  list-style: none;
+}
 main {
   flex-direction: column;
 }

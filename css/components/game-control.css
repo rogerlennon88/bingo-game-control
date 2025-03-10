@@ -1,0 +1,36 @@
+/**
+ * Game Control
+*/
+
+#game-control {
+}
+
+#game-control .control {
+  display: grid;
+  gap: 16px;
+  grid-auto-flow: row;
+}
+#game-control .control .item {
+}
+
+#game-control .btn-control {
+  padding: 8px 32px;
+  font-weight: var(--font-weight-bold);
+  border: none;
+  border-radius: 4px;
+  display: flex;
+}
+
+#game-control  .text-button {
+  display: none;
+}
+
+@media (max-width: 1134px) {
+  #game-control .control {
+    grid-auto-flow: column;
+    margin-left: 16px;
+  }
+  #game-control .text-button {
+    display: initial;
+  }
+}

@@ -7,7 +7,6 @@
 }
 
 #last-number-list .number-list {
-  list-style-type: none;
   display: flex;
   flex-wrap: nowrap;
 }

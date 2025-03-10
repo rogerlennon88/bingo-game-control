@@ -8,6 +8,10 @@
       href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
@@ -97,10 +101,10 @@
           <div id="last-number-list" class="module">
             <h2>Últimas 4 Balotas</h2>
             <ul class="number-list">
-              <li class="item num-1"><span class="num-2">00</span></li>
-              <li class="item num-1"><span class="num-3">00</span></li>
-              <li class="item num-1"><span class="num-4">00</span></li>
-              <li class="item num-1"><span class="num-5">00</span></li>
+              <li class="item"><span class="num-2">00</span></li>
+              <li class="item"><span class="num-3">00</span></li>
+              <li class="item"><span class="num-4">00</span></li>
+              <li class="item"><span class="num-5">00</span></li>
             </ul>
           </div>
           <!-- Last Number List Module End -->
@@ -128,8 +132,38 @@
             <div id="grid-game-board"></div>
           </div>
           <!-- Game Board Module End -->
+
+          <!-- Game Control Module Start -->
+          <div id="game-control" class="module">
+            <ul class="control">
+              <li class="item control">
+                <button
+                  id="btn-restart-game"
+                  class="btn btn-primary btn-control"
+                  type="button"
+                  title="Reiniciar Juego"
+                >
+                  <span class="material-icons-round"> history </span>
+                  <span class="text-button">Reiniciar</span>
+                </button>
+              </li>
+              <li class="item control">
+                <button
+                  id="btn-new-game"
+                  class="btn btn-primary btn-control"
+                  type="button"
+                  title="Nuevo Juego"
+                >
+                  <span class="material-icons-round"> pattern </span>
+                  <span class="text-button">Nuevo Juego</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+          <!-- Game Control Module End -->
         </div>
         <!-- Block End -->
+
       </section>
       <!-- Game Section End -->
 
