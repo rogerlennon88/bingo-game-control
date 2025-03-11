@@ -71,12 +71,18 @@ class GameFlow {
   }
 
   restartGame() {
-    this.goToPhase('loading');
-    bingoController.reset();
-    gameBoard.reset();
-    gameMode.reset();
-    gameScore.reset();
-    gameControl.reset();
+    if (this.currentPhase === 'game') {
+      bingoController.resetGamePhase();
+      gameBoard.reset();
+      gameScore.reset();
+    } else {
+      this.goToPhase('loading');
+      bingoController.reset();
+      gameBoard.reset();
+      gameMode.reset();
+      gameScore.reset();
+      gameControl.reset();
+    }
   }
 }
 

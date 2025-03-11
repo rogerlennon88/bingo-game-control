@@ -32,13 +32,12 @@ class GameControl {
   handleRestartGame() {
     if (confirm("¿Reiniciar Juego?")) {
       gameFlow.restartGame(); // Llamar a gameFlow.restartGame()
+      this.disableRestartButton(); // Deshabilitar el botón de reinicio
     }
   }
 
   enableControlButtons() {
-    const restartButton = document.getElementById('btn-restart-game');
     const newGameButton = document.getElementById('btn-new-game');
-    restartButton.classList.remove('lock');
     newGameButton.classList.remove('lock');
   }
 
@@ -46,6 +45,16 @@ class GameControl {
     this.buttons.forEach(button => {
       button.classList.add('lock');
     });
+  }
+
+  enableRestartButton() {
+    const restartButton = document.getElementById('btn-restart-game');
+    restartButton.classList.remove('lock');
+  }
+
+  disableRestartButton() {
+    const restartButton = document.getElementById('btn-restart-game');
+    restartButton.classList.add('lock');
   }
 
   reset() {

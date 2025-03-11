@@ -142,6 +142,15 @@ class BingoController {
     this.selectedPattern.clear();
     this.winners.clear();
   }
+
+  resetGamePhase() {
+    this.markedBalls.clear();
+    this.winners.clear();
+    this.bingoCards.forEach(card => {
+      card.markedPositions = new Set();
+      card.status = '';
+    });
+  }
 }
 
 const bingoController = new BingoController();
