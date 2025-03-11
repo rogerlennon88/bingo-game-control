@@ -5,14 +5,14 @@ class BingoController {
     this.bingoCards = new Map();
     this.markedBalls = new Set();
     this.selectedPattern = new Set();
-    this.loadBingoCards();
     this.onCardsLoaded = null;
     this.onBallMarked = null;
     this.onWinnerDetected = null;
     this.winners = new Set();
+    this.loadCards(); // Cargar cartas desde el constructor
   }
 
-  async loadBingoCards() {
+  async loadCards() {
     try {
       const response = await fetch("data/bingo-cards.csv");
       const csvData = await response.text();
@@ -50,7 +50,6 @@ class BingoController {
     this.markedBalls.add(ballNumber);
     this.checkPatterns(ballNumber);
     console.log("Balota marcada:", ballNumber);
-    // console.log("Balotas marcadas:", this.markedBalls);
   }
 
   checkPatterns(ballNumber) {
@@ -100,10 +99,18 @@ class BingoController {
       if (this.onWinnerDetected) {
         this.onWinnerDetected(this.winners.size);
       }
+      this.checkWinners(); // Verificar si hay ganadores
     } else if (pattern.size - card.markedPositions.size === 1) {
       card.status = 'started';
     } else {
       card.status = '';
+    }
+  }
+
+  checkWinners() {
+    if (this.winners.size > 0) {
+      const event = new CustomEvent('gameOver');
+      document.dispatchEvent(event);
     }
   }
 
@@ -127,6 +134,13 @@ class BingoController {
   selectPattern(pattern) {
     this.selectedPattern = pattern;
     console.log("Patrón seleccionado:", this.selectedPattern);
+  }
+
+  reset() {
+    this.bingoCards.clear();
+    this.markedBalls.clear();
+    this.selectedPattern.clear();
+    this.winners.clear();
   }
 }
 

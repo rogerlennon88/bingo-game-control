@@ -1,6 +1,7 @@
 // game-score.js
 
 import { bingoController } from './bingo-controller.js';
+import { gameFlow } from './game-flow.js';
 
 class GameScore {
   constructor(scoreElementId = 'game-score') {
@@ -9,6 +10,9 @@ class GameScore {
     this.displayInfo = this.scoreElement.querySelector('.display');
     this.statusList = this.scoreElement.querySelector('.status-list');
     this.gameBoard = document.getElementById('grid-game-board');
+  }
+
+  init() {
     this.initializeScore();
   }
 
@@ -27,6 +31,7 @@ class GameScore {
   showWinnerMessage(winnerCount) {
     this.displayInfo.textContent = `Total de tablas ganadoras: ${winnerCount}`;
     this.disableGameBoard();
+    gameFlow.goToPhase('gameOver'); // Cambiar a la fase 'gameOver'
   }
 
   updateStatusList(cards) {
@@ -51,6 +56,11 @@ class GameScore {
 
   enableGameBoard() {
     this.gameBoard.style.pointerEvents = 'auto';
+  }
+
+  reset() {
+    this.statusList.innerHTML = '';
+    this.displayInfo.textContent = '';
   }
 }
 

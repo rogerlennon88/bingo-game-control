@@ -7,6 +7,10 @@ class GameBoard {
     this.boardElementId = boardElementId;
     this.markedBalls = new Set();
     this.ballHistory = [];
+  }
+
+  init() {
+    console.log("Inicializando gameBoard...");
     this.initializeBoard();
   }
 
@@ -91,6 +95,20 @@ class GameBoard {
         ? history[index].toString().padStart(2, "0")
         : "00";
     });
+  }
+
+  reset() {
+    this.markedBalls.clear();
+    this.ballHistory = [];
+    const markedButtons = document.querySelectorAll(
+      "#grid-game-board .btn-ggb.marked"
+    );
+    markedButtons.forEach((button) => {
+      button.classList.remove("marked");
+      button.disabled = false;
+    });
+    this.updateLastBallDisplay(0);
+    this.updateLastBallsList();
   }
 }
 

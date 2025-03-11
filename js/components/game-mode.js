@@ -2,6 +2,7 @@
 
 import { bingoController } from "./bingo-controller.js";
 import { gameControl } from "./game-control.js";
+import { gameFlow } from "./game-flow.js";
 
 class GameMode {
   constructor(modeElementId = "grid-game-mode") {
@@ -9,6 +10,9 @@ class GameMode {
     this.selectedPattern = new Set();
     this.handleSelectClickBound = this.handleSelectButtonClick.bind(this);
     this.handleRestartGameBound = this.handleRestartGame.bind(this);
+  }
+
+  init() {
     this.initializeMode();
   }
 
@@ -103,12 +107,13 @@ class GameMode {
     if (confirm(`Total de tablas activas: ${cardCount} ¿Confirmar Modo de Juego?`)) {
       this.enableGameBoard();
       bingoController.selectPattern(this.selectedPattern);
-      bingoController.loadBingoCards();
+      bingoController.loadCards();
       this.disableModeButtons();
       this.disableNumberButtons();
       this.selectButton.classList.add("lock");
       this.selectButton.removeEventListener("click", this.handleSelectClickBound);
       gameControl.enableControlButtons();
+      gameFlow.nextPhase(); // Llamar a gameFlow.nextPhase()
     }
   }
 
@@ -142,9 +147,19 @@ class GameMode {
     });
   }
 
-  resetGame() {
-    // Implementar lógica de reinicio del juego aquí
-    console.log("Juego reiniciado");
+  reset() {
+    this.selectedPattern.clear();
+    const buttons = document.querySelectorAll(".btn-ggm");
+    buttons.forEach((button) => {
+      button.classList.remove("active");
+      if (button.id !== "n3") {
+        button.classList.remove("lock");
+      }
+    });
+    this.selectButton.classList.add("lock");
+    this.selectButton.addEventListener("click", this.handleSelectClickBound);
+    this.enableModeButtons();
+    this.disableGameBoard();
   }
 }
 
