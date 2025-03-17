@@ -12,19 +12,48 @@
   border: 1px solid rgba(233, 220, 201, 0.75);
   border-radius: 8px;
 }
-
-.display {
+#game-score .display-info > div {
+  margin-bottom: 4px;
+}
+#game-score .display-info .statistics {
   background-color: rgb(248, 249, 249);
   color: rgb(25, 25, 112);
   font-weight: var(--font-weight-bold);
   height: 32px;
   padding: 2px;
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+  gap: 16px;
+}
+#game-score .display-info .statistics .stat-item {
+  padding: 2px;
+  padding-left: 8px;
+  border: 1px solid rgb(229, 228, 226);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-radius: 4px;
+}
+#game-score .display-info .statistics .data {
+  background-color: rgb(25, 25, 112);
+  color: white;
+  font-weight: 300;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+#game-score .display-info .display {
+  background-color: rgb(248, 249, 249);
+  color: rgb(25, 25, 112);
+  font-weight: var(--font-weight-bold);
+  height: 32px;
+  padding: 2px;
+  display: none;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
-
 #game-score .status-list {
   background-color: rgb(54, 69, 79);
   height: 240px;
@@ -38,7 +67,6 @@
   align-content: flex-start;
   overflow-y: auto;
 }
-
 #game-score .item {
   background-color: rgb(115, 147, 179);
   color: white;
@@ -53,7 +81,6 @@
   place-items: center;
   overflow: hidden;
 }
-
 #game-score .index-num {
   background-color: rgb(70, 130, 180);
   color: rgb(167, 199, 231);
@@ -66,7 +93,6 @@
   align-items: center;
   overflow: hidden;
 }
-
 #game-score .status {
   background-color: rgb(240, 255, 255);
   width: 12px;
@@ -74,17 +100,14 @@
   border-radius: 50%;
   border: 1px solid rgba(52, 73, 94, 0.75);
 }
-
 #game-score .winner {
   background-color: rgb(130, 224, 170);
   border: 1px solid rgba(52, 73, 94, 1);
 }
-
 #game-score .started {
   background-color: rgb(240, 178, 122);
   border: 1px solid rgba(52, 73, 94, 1);
 }
-
 #game-score .id-ticket {
   width: 100%;
   height: 100%;

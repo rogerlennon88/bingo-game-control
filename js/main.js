@@ -33,11 +33,4 @@ document.addEventListener('DOMContentLoaded', () => {
       reader.readAsText(file);
     }
   }
-
-  bingoController.onCardsLoaded = (cardCount) => {
-    document.querySelector('#game-score .display').textContent = `Total de tablas activas: ${cardCount}`;
-    setTimeout(() => {
-      document.querySelector('#game-score .display').textContent = '';
-    }, 10000);
-  };
 });

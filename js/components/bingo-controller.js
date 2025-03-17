@@ -11,7 +11,7 @@ class BingoController {
     this.onBallMarked = null;
     this.onWinnerDetected = null;
     this.winners = new Set();
-    this.loadCards(); // Cargar cartas desde el constructor
+    this.loadCards();
   }
 
   async loadCards() {
@@ -52,6 +52,7 @@ class BingoController {
     this.markedBalls.add(ballNumber);
     this.checkPatterns(ballNumber);
     console.log("Balota marcada:", ballNumber);
+    this.updateBallCount(); // Actualizar el contador de balotas
   }
 
   checkPatterns(ballNumber) {
@@ -101,7 +102,7 @@ class BingoController {
       if (this.onWinnerDetected) {
         this.onWinnerDetected(this.winners.size);
       }
-      this.checkWinners(); // Verificar si hay ganadores
+      this.checkWinners();
     } else if (pattern.size - card.markedPositions.size === 1) {
       card.status = 'started';
     } else {
@@ -152,6 +153,13 @@ class BingoController {
       card.markedPositions = new Set();
       card.status = '';
     });
+  }
+
+  updateBallCount() {
+    const totalBallsElement = document.getElementById('total-balls');
+    if (totalBallsElement) {
+      totalBallsElement.textContent = this.markedBalls.size;
+    }
   }
 }
 
