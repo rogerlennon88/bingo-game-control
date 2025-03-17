@@ -1,5 +1,7 @@
 // bingo-controller.js
 
+import { gameFlow } from './game-flow.js';
+
 class BingoController {
   constructor() {
     this.bingoCards = new Map();
@@ -108,7 +110,7 @@ class BingoController {
   }
 
   checkWinners() {
-    if (this.winners.size > 0) {
+    if (this.winners.size > 0 && !gameFlow.isGameOver) {
       const event = new CustomEvent('gameOver');
       document.dispatchEvent(event);
     }

@@ -1,5 +1,3 @@
-// game-flow.js
-
 import { bingoController } from './bingo-controller.js';
 import { gameBoard } from './game-board.js';
 import { gameMode } from './game-mode.js';
@@ -11,6 +9,7 @@ class GameFlow {
     this.currentPhase = 'loading'; // Fase inicial
     this.phases = ['loading', 'patternSelection', 'game', 'gameOver'];
     this.phaseIndex = 0;
+    this.isGameOver = false;
     this.initializeEventListeners();
   }
 
@@ -64,6 +63,21 @@ class GameFlow {
   handleGameOver() {
     // Lógica para la fase de fin del juego
     gameControl.enableControlButtons();
+    this.isGameOver = true;
+    this.lockGameBoardButtons();
+    this.lockRestartButton(); // Bloquear botón de reinicio
+  }
+
+  lockGameBoardButtons() {
+    const gameBoardButtons = document.querySelectorAll('#grid-game-board .btn-ggb');
+    gameBoardButtons.forEach(button => {
+      button.classList.add('lock');
+    });
+  }
+
+  lockRestartButton() {
+    const restartButton = document.getElementById('btn-restart-game');
+    restartButton.classList.add('lock');
   }
 
   startGame() {
@@ -83,6 +97,21 @@ class GameFlow {
       gameScore.reset();
       gameControl.reset();
     }
+    this.isGameOver = false;
+    this.unlockGameBoardButtons();
+    this.unlockRestartButton(); // Desbloquear botón de reinicio
+  }
+
+  unlockGameBoardButtons() {
+    const gameBoardButtons = document.querySelectorAll('#grid-game-board .btn-ggb');
+    gameBoardButtons.forEach(button => {
+      button.classList.remove('lock');
+    });
+  }
+
+  unlockRestartButton() {
+    const restartButton = document.getElementById('btn-restart-game');
+    restartButton.classList.remove('lock');
   }
 }
 

@@ -8,7 +8,7 @@ class GameBoard {
     this.boardElementId = boardElementId;
     this.markedBalls = new Set();
     this.ballHistory = [];
-    this.firstBallMarked = false; // Variable para rastrear la primera bola marcada
+    this.firstBallMarked = false;
   }
 
   init() {
