@@ -1,4 +1,4 @@
-// game-control.js
+// js/components/game-control.js
 
 import { bingoController } from './bingo-controller.js';
 import { gameBoard } from './game-board.js';

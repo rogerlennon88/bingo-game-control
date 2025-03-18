@@ -1,4 +1,4 @@
-// bingo-controller.js
+// js/components/bingo-controller.js
 
 import { gameFlow } from './game-flow.js';
 

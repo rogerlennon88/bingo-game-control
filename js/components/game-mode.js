@@ -1,4 +1,4 @@
-// game-mode.js
+// js/components/game-mode.js
 
 import { bingoController } from "./bingo-controller.js";
 import { gameControl } from "./game-control.js";
