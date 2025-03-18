@@ -1,0 +1,8 @@
+# Dependencias de Node.js
+node_modules/
+
+# Tablas de bingo
+data/
+
+# Archivos de configuración del IDE
+.vscode/
