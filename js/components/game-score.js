@@ -31,7 +31,12 @@ class GameScore {
   }
 
   updateBallsCount() {
-    this.totalBallsDisplay.textContent = bingoController.markedBalls.size;
+    if (bingoController.markedBalls) {
+      // Agregar verificación de undefined
+      this.totalBallsDisplay.textContent = bingoController.markedBalls.size;
+    } else {
+      this.totalBallsDisplay.textContent = "0"; // O un valor predeterminado
+    }
     requestAnimationFrame(this.updateBallsCount.bind(this));
   }
 

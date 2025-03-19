@@ -1,5 +1,9 @@
 // js/components/game-cards-loader.js
 
+import { gameFlow } from "./game-flow.js";
+import { bingoController } from "./bingo-controller.js";
+import { gameScore } from "./game-score.js";
+
 class GameCardsLoader {
   constructor(loaderElementId = "game-cards-loader") {
     this.loaderElementId = loaderElementId;
@@ -31,9 +35,10 @@ class GameCardsLoader {
   }
 
   handleLoadCards() {
+    console.log("GameCardsLoader: handleLoadCards llamado.");
     console.log("GameCardsLoader: Botón 'Cargar datos' clickeado.");
-    // Aquí irá la lógica para cargar los datos del archivo CSV
-    this.loadCSVData(this.fileInput.files[0]); // Llamar a la función para cargar datos
+    gameScore.init();
+    this.loadCSVData(this.fileInput.files[0]); // Llamar a loadCSVData aquí
   }
 
   handleFileChange(event) {
@@ -104,6 +109,10 @@ class GameCardsLoader {
       .then((response) => {
         if (response.ok) {
           console.log("Archivo CSV guardado correctamente.");
+          bingoController.loadCards().then(() => {
+            // Llamar a bingoController.loadCards() aquí
+            gameFlow.nextPhase();
+          });
         } else {
           console.error("Error al guardar el archivo CSV.");
         }

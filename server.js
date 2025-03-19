@@ -12,7 +12,8 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, ".")));
 
 // Usar bodyParser.raw() para parsear el cuerpo de la solicitud como datos binarios
-app.use(bodyParser.raw({ type: "text/csv" }));
+// Aumentar el límite del tamaño del cuerpo de la solicitud a 50MB (o el tamaño que necesites)
+app.use(bodyParser.raw({ type: "text/csv", limit: "64mb" }));
 
 // Ruta principal para servir index.html
 app.get("/", (req, res) => {

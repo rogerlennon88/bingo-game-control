@@ -59,7 +59,6 @@ class GameFlow {
         break;
       case "dataLoading":
         console.log("Fase: Carga de datos");
-        // bingoController.loadCards(); // Eliminar esta línea
         break;
       case "patternSelection":
         gameMode.init();
