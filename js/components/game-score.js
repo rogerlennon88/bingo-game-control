@@ -12,7 +12,6 @@ class GameScore {
     this.totalCardsDisplay = document.getElementById("total-cards");
     this.totalBallsDisplay = document.getElementById("total-balls");
     this.totalWinnersDisplay = document.getElementById("total-winners");
-    // this.displayInfo = this.scoreElement.querySelector('.display'); // Eliminar esta línea
   }
 
   init() {
@@ -27,6 +26,7 @@ class GameScore {
   }
 
   updateCardsCount(cardCount) {
+    console.log(`GameScore: updateCardsCount llamado con ${cardCount}.`); // Agregar log aquí
     this.totalCardsDisplay.textContent = cardCount;
   }
 
@@ -67,7 +67,7 @@ class GameScore {
 
   reset() {
     this.statusList.innerHTML = "";
-    this.totalCardsDisplay.textContent = "0";
+    this.totalCardsDisplay.textContent = "0"; // Establecer el valor inicial a cero
     this.totalBallsDisplay.textContent = "0";
     this.totalWinnersDisplay.textContent = "0";
   }

@@ -1,6 +1,6 @@
 // js/components/bingo-controller.js
 
-import { gameFlow } from './game-flow.js';
+import { gameFlow } from "./game-flow.js";
 
 class BingoController {
   constructor() {
@@ -11,29 +11,34 @@ class BingoController {
     this.onBallMarked = null;
     this.onWinnerDetected = null;
     this.winners = new Set();
-    this.loadCards();
+    this.importedCards = null;
   }
 
   async loadCards() {
     try {
       const response = await fetch("data/bingo-cards.csv");
       const csvData = await response.text();
+      console.log("BingoController: Archivo bingo-cards.csv leído.");
       this.processBingoCards(csvData);
     } catch (error) {
       console.error("Error loading bingo cards:", error);
     }
   }
 
+  storeImportedCards(csvData) {
+    this.importedCards = csvData;
+  }
+
   processBingoCards(csvData) {
-    const lines = csvData.split('\n');
-    const headers = lines[0].split(',');
+    const lines = csvData.split("\n");
+    const headers = lines[0].split(",");
     for (let i = 1; i < lines.length; i++) {
-      const values = lines[i].split(',');
+      const values = lines[i].split(",");
       if (values.length === headers.length) {
         const card = {};
         const cells = {};
         for (let j = 0; j < headers.length; j++) {
-          if (headers[j] === 'id' || headers[j] === 'serial') {
+          if (headers[j] === "id" || headers[j] === "serial") {
             card[headers[j]] = values[j];
           } else {
             cells[headers[j]] = values[j];
@@ -43,8 +48,15 @@ class BingoController {
         this.bingoCards.set(card.id, card);
       }
     }
+    console.log("BingoController: Tablas de bingo procesadas.");
+    console.log("BingoController: Contenido de bingoCards:", this.bingoCards);
     if (this.onCardsLoaded) {
       this.onCardsLoaded(this.bingoCards.size);
+      console.log(
+        `BingoController: onCardsLoaded llamado con ${this.bingoCards.size} tablas.`
+      );
+    } else {
+      console.log(`BingoController: onCardsLoaded No esta definido.`);
     }
   }
 
@@ -72,7 +84,10 @@ class BingoController {
     if (!card.markedPositions) {
       card.markedPositions = new Set();
     }
-    if (!card.markedPositions.has(position) && this.selectedPattern.has(position)) {
+    if (
+      !card.markedPositions.has(position) &&
+      this.selectedPattern.has(position)
+    ) {
       card.markedPositions.add(position);
       card.lastMarkedTime = Date.now();
       console.log(`Tabla ${cardId} posición marcada:`, position);
@@ -98,21 +113,21 @@ class BingoController {
     }
     if (patternComplete) {
       this.winners.add(cardId);
-      card.status = 'winner';
+      card.status = "winner";
       if (this.onWinnerDetected) {
         this.onWinnerDetected(this.winners.size);
       }
       this.checkWinners();
     } else if (pattern.size - card.markedPositions.size === 1) {
-      card.status = 'started';
+      card.status = "started";
     } else {
-      card.status = '';
+      card.status = "";
     }
   }
 
   checkWinners() {
     if (this.winners.size > 0 && !gameFlow.isGameOver) {
-      const event = new CustomEvent('gameOver');
+      const event = new CustomEvent("gameOver");
       document.dispatchEvent(event);
     }
   }
@@ -120,10 +135,14 @@ class BingoController {
   updateCardRanking() {
     const cards = Array.from(this.bingoCards.values());
     const rankedCards = cards
-      .filter(card => card.status === 'winner' || card.status === 'started')
+      .filter((card) => card.status === "winner" || card.status === "started")
       .sort((a, b) => {
-        const aMissing = this.selectedPattern.size - (a.markedPositions ? a.markedPositions.size : 0);
-        const bMissing = this.selectedPattern.size - (b.markedPositions ? b.markedPositions.size : 0);
+        const aMissing =
+          this.selectedPattern.size -
+          (a.markedPositions ? a.markedPositions.size : 0);
+        const bMissing =
+          this.selectedPattern.size -
+          (b.markedPositions ? b.markedPositions.size : 0);
         if (aMissing !== bMissing) {
           return aMissing - bMissing;
         }
@@ -149,14 +168,14 @@ class BingoController {
   resetGamePhase() {
     this.markedBalls.clear();
     this.winners.clear();
-    this.bingoCards.forEach(card => {
+    this.bingoCards.forEach((card) => {
       card.markedPositions = new Set();
-      card.status = '';
+      card.status = "";
     });
   }
 
   updateBallCount() {
-    const totalBallsElement = document.getElementById('total-balls');
+    const totalBallsElement = document.getElementById("total-balls");
     if (totalBallsElement) {
       totalBallsElement.textContent = this.markedBalls.size;
     }
