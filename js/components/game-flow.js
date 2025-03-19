@@ -43,7 +43,7 @@ class GameFlow {
   }
 
   notifyPhaseChange() {
-    console.log(`Fase del juego cambiada: ${this.currentPhase}`); // Agregar log aquí
+    console.log(`Fase del juego cambiada: ${this.currentPhase}`);
     const event = new CustomEvent("phaseChanged", {
       detail: this.currentPhase,
     });
