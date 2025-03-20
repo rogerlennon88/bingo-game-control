@@ -15,8 +15,13 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
+    <!-- Message Start -->
+    <div id="system-message" class="message-success">
+      Archivo CSV cargado correctamente.
+    </div>
+    <!-- Message End -->
     <!-- Top Panel Start -->
-    <header class="panel_test">
+    <header>
       <!-- Branding Area Start -->
       <div class="brand">
         <img class="logo" src="./img/logo.png" alt="Aladdingo Logo" />
@@ -40,8 +45,8 @@
             <p class="subtitle">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
             </p>
-            <div class="layout-cards-loader">
-              <div class="drop-area">
+            <div id="layout-cards-loader" class="layout-cards-loader">
+              <div id="drop-area" class="drop-area">
                 <p>Arrastra y suelta tu archivo CSV aquí o</p>
                 <input
                   type="file"
@@ -54,14 +59,20 @@
                 >
                 <p id="file-name"></p>
               </div>
-              <div id="loading-overlay" style="display: none">
-                <div id="loading-spinner"></div>
-              </div>
-              <div id="success-message" style="display: none"></div>
-              <div id="error-message" style="display: none"></div>
               <button id="btn-cards-load" class="btn btn-opm btn-primary lock">
                 Cargar datos
               </button>
+            </div>
+          </div>
+          <!-- Game Cards Loader Module End -->
+          <!-- Game Cards Loader Module Start -->
+          <div id="game-cards-loader" class="module">
+            <h2 class="title-2">Importar Tablas</h2>
+            <p class="subtitle">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            </p>
+            <div id="layout-cards-loader" class="layout-cards-loader">
+              <p>Se importaron <strong>16 tablas</strong> correctamente.</p>
             </div>
           </div>
           <!-- Game Cards Loader Module End -->

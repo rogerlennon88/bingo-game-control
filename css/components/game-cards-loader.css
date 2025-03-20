@@ -6,13 +6,22 @@
 
 .layout-cards-loader {
   background-color: #e2e2e2;
-  border: 2px dashed #f2f2f2;
-  padding: 20px;
   text-align: center;
+  min-height: 200px;
+  padding: 20px;
+  border: 2px dashed #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.layout-cards-loader > p {
+  color: gray;
 }
 
 .drop-area {
   border: 2px dashed #ccc;
+  width: 100%;
   padding: 20px;
   margin-bottom: 20px;
   display: flex;
@@ -30,6 +39,36 @@
 
 .drop-area.dragover {
   background-color: #f0f8ff;
+}
+
+#loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #09f;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .browse-button {

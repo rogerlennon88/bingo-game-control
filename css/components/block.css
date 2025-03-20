@@ -1,7 +1,7 @@
 /* css/components/block.css */
 
 .block {
-  background-color:rgb(249, 246, 238);
+  background-color: rgb(249, 246, 238);
   padding: var(--grid-gap);
   display: flex;
   flex-direction: column;

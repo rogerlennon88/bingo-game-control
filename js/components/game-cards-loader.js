@@ -233,55 +233,98 @@ class GameCardsLoader {
           console.log("Archivo CSV guardado correctamente.");
           bingoController.loadCards().then(() => {
             gameFlow.nextPhase();
+            this.showSuccess(); // Llamar a showSuccess aquí
           });
         } else {
           console.error("Error al guardar el archivo CSV.");
+          this.showError(); // Llamar a showError aquí
         }
-        // Mover la llamada a showSuccess() dentro de DOMContentLoaded
-        document.addEventListener("DOMContentLoaded", () => {
-          this.showSuccess();
-        });
       })
       .catch((error) => {
         console.error("Error al enviar la solicitud:", error);
-        // Mover la llamada a showError() dentro de DOMContentLoaded
-        document.addEventListener("DOMContentLoaded", () => {
-          this.showError();
-        });
+        this.showError(error.message);
       });
   }
 
   showLoading() {
-    document.getElementById("loading-overlay").style.display = "flex";
+    const overlay = document.createElement("div");
+    overlay.id = "loading-overlay";
+    overlay.style.display = "flex";
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.zIndex = "1000"; // Asegura que esté por encima de otros elementos
+
+    const spinner = document.createElement("div");
+    spinner.className = "spinner"; // Asegúrate de tener estilos CSS para .spinner
+    overlay.appendChild(spinner);
+
+    document.body.appendChild(overlay);
   }
 
   hideLoading() {
-    document.getElementById("loading-overlay").style.display = "none";
+    const overlay = document.getElementById("loading-overlay");
+    if (overlay) {
+      document.body.removeChild(overlay);
+    }
+  }
+
+  showMessage(message, type) {
+    let messageContainer = document.getElementById("message-container");
+
+    if (!messageContainer) {
+      messageContainer = document.createElement("div");
+      messageContainer.id = "message-container";
+      messageContainer.style.position = "fixed";
+      messageContainer.style.top = "20px";
+      messageContainer.style.left = "50%";
+      messageContainer.style.transform = "translateX(-50%)";
+      messageContainer.style.padding = "10px 20px";
+      messageContainer.style.borderRadius = "5px";
+      messageContainer.style.zIndex = "1001"; // Asegura que esté por encima de otros elementos
+      document.body.appendChild(messageContainer);
+    }
+
+    messageContainer.textContent = message;
+    messageContainer.style.backgroundColor =
+      type === "success" ? "green" : "red";
+    messageContainer.style.display = "block";
+
+    setTimeout(() => {
+      messageContainer.style.display = "none";
+    }, 3000); // Ocultar después de 3 segundos
   }
 
   showSuccess() {
-    const successMessage = document.getElementById("success-message");
-    if (successMessage) {
-      successMessage.textContent = "Archivo CSV cargado correctamente.";
-      successMessage.style.display = "block";
-      document.getElementById("drop-area").style.display = "none";
-      this.hideLoading();
-    } else {
-      console.error("Elemento 'success-message' no encontrado.");
+    this.hideLoading();
+    this.showMessage("Archivo CSV cargado correctamente.", "success");
+
+    // Eliminar layout-cards-loader
+    const cardsLoader = document.getElementById("layout-cards-loader");
+    if (cardsLoader) {
+      cardsLoader.remove();
     }
+
+    // Mostrar cantidad de tablas importadas
+    const cardsCount = bingoController.bingoCards.size;
+    const message = document.createElement("p");
+    message.textContent = `Se importaron ${cardsCount} tablas correctamente.`;
+    message.style.textAlign = "center";
+    message.style.marginTop = "20px";
+    document.body.appendChild(message);
   }
 
-  showError() {
-    const errorMessage = document.getElementById("error-message");
-    if (errorMessage) {
-      errorMessage.textContent =
-        "Error al cargar el archivo CSV. Intente de nuevo.";
-      errorMessage.style.display = "block";
-      document.getElementById("drop-area").style.display = "block";
-      this.hideLoading();
-    } else {
-      console.error("Elemento 'error-message' no encontrado.");
-    }
+  showError(error) {
+    this.hideLoading();
+    this.showMessage(
+      error || "Error al cargar el archivo CSV. Intente de nuevo.",
+      "error"
+    );
   }
 
   processCSVData(csvData) {
