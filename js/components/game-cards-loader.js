@@ -12,6 +12,8 @@ class GameCardsLoader {
     this.fileInput = document.getElementById("file-input");
     this.loadButton = document.getElementById("btn-cards-load");
     this.fileNameDisplay = document.getElementById("file-name");
+    this.layoutCardsLoader = document.getElementById("layout-cards-loader");
+    this.dropArea = document.getElementById("drop-area"); // Agregar esta línea
     this.initializeLoader();
   }
 
@@ -253,9 +255,11 @@ class GameCardsLoader {
   }
 
   clearModule() {
-    this.layoutCardsLoader.innerHTML = `<p>Se importaron <strong>${
-      bingoController.getCards().length
-    } tablas</strong> correctamente.</p>`;
+    // Reemplazar el contenido de layout-cards-loader
+    this.layoutCardsLoader.innerHTML = `<p>Se importaron <strong>${bingoController.bingoCards.size} tablas</strong> correctamente.</p>`;
+    // Eliminar dropArea y loadButton
+    this.dropArea.remove();
+    this.loadButton.remove();
   }
 
   showLoading() {
