@@ -3,6 +3,7 @@
 import { gameFlow } from "./game-flow.js";
 import { bingoController } from "./bingo-controller.js";
 import { gameScore } from "./game-score.js";
+import { systemMessage } from "./system-message.js";
 
 class GameCardsLoader {
   constructor(loaderElementId = "game-cards-loader") {
@@ -220,7 +221,6 @@ class GameCardsLoader {
   }
 
   saveCSVData(csvData) {
-    console.log("Datos CSV a enviar:", csvData);
     fetch("/save-csv", {
       method: "POST",
       headers: {
@@ -229,21 +229,33 @@ class GameCardsLoader {
       body: csvData,
     })
       .then((response) => {
+        this.hideLoading();
         if (response.ok) {
           console.log("Archivo CSV guardado correctamente.");
           bingoController.loadCards().then(() => {
             gameFlow.nextPhase();
-            this.showSuccess(); // Llamar a showSuccess aquí
+            systemMessage.show("Archivo CSV cargado correctamente.", "success");
+            this.clearModule();
           });
         } else {
           console.error("Error al guardar el archivo CSV.");
-          this.showError(); // Llamar a showError aquí
+          systemMessage.show("Error al guardar el archivo CSV.", "danger");
         }
       })
       .catch((error) => {
+        this.hideLoading();
         console.error("Error al enviar la solicitud:", error);
-        this.showError(error.message);
+        systemMessage.show(
+          error.message || "Error al enviar la solicitud.",
+          "danger"
+        );
       });
+  }
+
+  clearModule() {
+    this.layoutCardsLoader.innerHTML = `<p>Se importaron <strong>${
+      bingoController.getCards().length
+    } tablas</strong> correctamente.</p>`;
   }
 
   showLoading() {

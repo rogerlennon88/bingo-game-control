@@ -98,7 +98,7 @@ main {
   box-shadow: 1px 1px 4px 0px rgb(169, 169, 169);
   border-radius: 4px;
   z-index: 1001;
-  /* display: none; */
+  display: none;
 }
 #system-message.message-success {
   background-color: rgba(40, 167, 69, 0.85);
