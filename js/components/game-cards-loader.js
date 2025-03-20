@@ -87,7 +87,7 @@ class GameCardsLoader {
       })
       .catch((error) => {
         console.error("Error al validar y cargar:", error);
-        alert(error.message);
+        systemMessage.show(error.message, "danger"); // Usar systemMessage.show()
         this.hideLoading();
       });
   }
