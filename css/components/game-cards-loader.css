@@ -9,29 +9,44 @@
   text-align: center;
   min-height: 200px;
   padding: 20px;
-  border: 2px dashed #f2f2f2;
+  /* border: 2px dashed #f2f2f2; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
-.layout-cards-loader > p {
-  color: gray;
-}
 
 .drop-area {
-  border: 2px dashed #ccc;
+  background-color: rgb(182, 208, 226);
   width: 100%;
   padding: 20px;
   margin-bottom: 20px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 }
-.drop-area > p {
+.drop-area.advanced {
+  outline: 2px dashed rgb(115, 147, 179);
+  outline-offset: -10px;
+  -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+  transition: outline-offset .15s ease-in-out, background-color .15s linear;
+}
+.drop-area.is-dragover {
+  outline-offset: -20px;
+  outline-color: #c8dadf;
+  background-color: rgb(240, 255, 255);
+}
+.drop-area .material-icons-outlined {
+  font-size: 8rem;
+}
+.drop-area > p,
+.drop-area > span {
+  color: rgb(70, 130, 180);
   margin-bottom: 0;
 }
+
 .drop-area #file-name {
   color: #929292;
   min-height: 18px;
@@ -72,10 +87,11 @@
 }
 
 .browse-button {
-  background-color: #4caf50;
+  background-color: rgb(64, 181, 173);
   color: white;
   padding: 10px 20px;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
 }
 

@@ -2,17 +2,12 @@
 <html>
   <head>
     <title>Aladdingo | Panel de Control</title>
+    <link rel="stylesheet" href="./css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Icons+Round"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet" />
   </head>
   <body>
     <!-- Message Start -->
@@ -40,39 +35,18 @@
           <!-- Game Cards Loader Module Start -->
           <div id="game-cards-loader" class="module">
             <h2 class="title-2">Importar Tablas</h2>
-            <p class="subtitle">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            </p>
+            <p class="subtitle">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
             <div id="layout-cards-loader" class="layout-cards-loader">
-              <div id="drop-area" class="drop-area">
+              <div id="drop-area" class="drop-area advanced">
+                <span class="material-icons-outlined"> file_download </span>
                 <p>Arrastra y suelta tu archivo CSV aquí o</p>
-                <input
-                  type="file"
-                  id="file-input"
-                  accept=".csv"
-                  style="display: none"
-                />
-                <label for="file-input" class="browse-button"
-                  >busca un archivo</label
-                >
+                <input type="file" id="file-input" accept=".csv" style="display: none" />
+                <label for="file-input" class="browse-button">busca un archivo</label>
                 <p id="file-name"></p>
               </div>
-              <button id="btn-cards-load" class="btn btn-opm btn-primary lock">
-                Cargar datos
-              </button>
+              <button id="btn-cards-load" class="btn btn-opm btn-primary lock">Cargar datos</button>
             </div>
           </div>
-          <!-- Game Cards Loader Module End -->
-          <!-- Game Cards Loader Module Start -->
-          <!-- <div id="game-cards-loader" class="module">
-            <h2 class="title-2">Importar Tablas</h2>
-            <p class="subtitle">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            </p>
-            <div id="layout-cards-loader" class="layout-cards-loader">
-              <p>Se importaron <strong>16 tablas</strong> correctamente.</p>
-            </div>
-          </div> -->
           <!-- Game Cards Loader Module End -->
         </div>
         <!-- Block End -->
@@ -82,17 +56,12 @@
           <!-- Game Mode Module Start -->
           <div id="game-mode" class="module">
             <h2 class="title-2">Modo de Juego</h2>
-            <p class="subtitle">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Repudiandae, at!
-            </p>
+            <p class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, at!</p>
             <div class="layout-mode">
               <div id="grid-game-mode" class="grid-game-mode"></div>
             </div>
             <div class="options-mode">
-              <button id="btn-select-mode" class="btn btn-opm btn-primary lock">
-                Selecionar
-              </button>
+              <button id="btn-select-mode" class="btn btn-opm btn-primary lock">Selecionar</button>
             </div>
           </div>
           <!-- Game Mode Module End -->
@@ -133,15 +102,9 @@
             <h2>Validacion de Tablas</h2>
             <div class="display-info">
               <div class="statistics">
-                <div class="stat-item">
-                  Tablas:<span id="total-cards" class="data">0</span>
-                </div>
-                <div class="stat-item">
-                  Balotas:<span id="total-balls" class="data">0</span>
-                </div>
-                <div class="stat-item">
-                  Ganadores:<span id="total-winners" class="data">0</span>
-                </div>
+                <div class="stat-item">Tablas:<span id="total-cards" class="data">0</span></div>
+                <div class="stat-item">Balotas:<span id="total-balls" class="data">0</span></div>
+                <div class="stat-item">Ganadores:<span id="total-winners" class="data">0</span></div>
               </div>
               <span class="display"></span>
             </div>
@@ -163,23 +126,13 @@
           <div id="game-control" class="module">
             <ul class="control">
               <li class="item control">
-                <button
-                  id="btn-restart-game"
-                  class="btn btn-primary btn-control lock"
-                  type="button"
-                  title="Reiniciar Juego"
-                >
+                <button id="btn-restart-game" class="btn btn-primary btn-control lock" type="button" title="Reiniciar Juego">
                   <span class="material-icons-round"> history </span>
                   <span class="text-button">Reiniciar</span>
                 </button>
               </li>
               <li class="item control">
-                <button
-                  id="btn-new-game"
-                  class="btn btn-primary btn-control lock"
-                  type="button"
-                  title="Nuevo Juego"
-                >
+                <button id="btn-new-game" class="btn btn-primary btn-control lock" type="button" title="Nuevo Juego">
                   <span class="material-icons-round"> pattern </span>
                   <span class="text-button">Nuevo Juego</span>
                 </button>
