@@ -18,5 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+window.addEventListener("beforeunload", () => {
+  // Emitir un evento al servidor para indicar que la página se está recargando
+  socket.emit("pageReloaded");
+});
+
 // Ejemplo de uso de SystemMessage
 // systemMessage.show("Bienvenido al juego de bingo", "success");

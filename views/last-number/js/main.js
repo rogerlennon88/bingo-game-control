@@ -4,6 +4,13 @@ const socket = io();
 const lastBallNumber = document.getElementById("last-ball-number");
 
 socket.on("lastBall", (ballNumber) => {
-  lastBallNumber.textContent = ballNumber.toString().padStart(2, "0");
-  console.log("Recibiendo lastBall:", ballNumber); // Agregar este console.log
+  if (ballNumber) {
+    lastBallNumber.textContent = ballNumber.toString().padStart(2, "0");
+  } else {
+    lastBallNumber.textContent = "";
+  }
+  console.log("Recibiendo lastBall:", ballNumber);
 });
+
+// Mostrar la vista vacía al inicio
+lastBallNumber.textContent = "";

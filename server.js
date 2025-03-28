@@ -52,7 +52,13 @@ io.on("connection", (socket) => {
 
   socket.on("lastBall", (ballNumber) => {
     io.emit("lastBall", ballNumber)
-    console.log("Servidor retransmitiendo lastBall:", ballNumber) // Agregar este console.log
+    console.log("Servidor retransmitiendo lastBall:", ballNumber)
+  })
+
+  socket.on("pageReloaded", () => {
+    // Emitir un evento lastBall con valor nulo para limpiar la vista
+    io.emit("lastBall", null)
+    console.log("Página recargada, limpiando lastBall en las vistas.")
   })
 
   socket.on("disconnect", () => {
