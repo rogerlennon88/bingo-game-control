@@ -6,7 +6,10 @@ import { gameCardsLoader } from "./components/game-cards-loader.js";
 import { gameScore } from "./components/game-score.js";
 import { systemMessage } from "./components/system-message.js";
 
+const socket = io();
+
 document.addEventListener("DOMContentLoaded", () => {
+  
   gameScore.init();
   gameFlow.startGame();
 
