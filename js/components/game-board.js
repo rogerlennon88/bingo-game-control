@@ -62,7 +62,11 @@ class GameBoard {
       this.markBall(ballNumber)
       this.updateBallHistory(ballNumber)
       this.updateLastBallDisplay(ballNumber)
-      this.updateLastBallsList()
+
+      // Obtener las últimas 4 balotas marcadas
+      const lastBalls = this.ballHistory.slice(-4)
+      this.updateLastBallsList(lastBalls) // Pasar el array de balotas
+
       if (!this.firstBallMarked) {
         this.firstBallMarked = true
         gameControl.enableRestartButton() // Habilitar el botón de reinicio
@@ -90,20 +94,19 @@ class GameBoard {
     console.log("Emitiendo lastBall:", ballNumber)
   }
 
-  updateLastBallsList() {
+  updateLastBallsList(balls) {
     const ballDisplays = document.querySelectorAll(
       "#last-number-list .num-2, #last-number-list .num-3, #last-number-list .num-4, #last-number-list .num-5"
     )
-    const balls = this.ballHistory.slice(-4).reverse() // Obtener las últimas 4 balotas marcadas
     if (Array.isArray(balls)) {
       balls.forEach((ball, index) => {
         ballDisplays[index].textContent = ball.toString().padStart(2, "0")
       })
-      io().emit("lastBalls", balls) // Emitir las últimas 4 balotas
+      io().emit("lastBalls", balls)
       console.log("Emitiendo lastBalls:", balls)
     } else {
       console.error("Error: balls no es un array válido.", balls)
-      io().emit("lastBalls", []) // Emitir un array vacío en caso de error
+      io().emit("lastBalls", [])
     }
   }
 
@@ -117,7 +120,7 @@ class GameBoard {
       button.disabled = false
     })
     this.updateLastBallDisplay(0)
-    this.updateLastBallsList()
+    this.updateLastBallsList([])
   }
 }
 
