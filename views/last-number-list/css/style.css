@@ -1,0 +1,18 @@
+#last-balls-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .number-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+  }
+  
+  .number-list .item {
+    margin: 0 10px;
+    font-size: 2rem;
+    font-weight: bold;
+  }

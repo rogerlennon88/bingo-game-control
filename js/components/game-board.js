@@ -86,18 +86,25 @@ class GameBoard {
   updateLastBallDisplay(ballNumber) {
     const lastBallDisplay = document.querySelector("#last-number .num-1")
     lastBallDisplay.textContent = ballNumber.toString().padStart(2, "0")
-    io().emit("lastBall", ballNumber) // Emitir el evento al servidor
-    console.log("Emitiendo lastBall:", ballNumber) // Agregar este console.log
+    io().emit("lastBall", ballNumber) // Aseguramos que se emita aquí
+    console.log("Emitiendo lastBall:", ballNumber)
   }
 
   updateLastBallsList() {
-    const lastBallsList = document.querySelectorAll(
+    const ballDisplays = document.querySelectorAll(
       "#last-number-list .num-2, #last-number-list .num-3, #last-number-list .num-4, #last-number-list .num-5"
     )
-    const history = this.ballHistory.slice(-5, -1).reverse()
-    lastBallsList.forEach((item, index) => {
-      item.textContent = history[index] ? history[index].toString().padStart(2, "0") : "00"
-    })
+    const balls = this.ballHistory.slice(-4).reverse() // Obtener las últimas 4 balotas marcadas
+    if (Array.isArray(balls)) {
+      balls.forEach((ball, index) => {
+        ballDisplays[index].textContent = ball.toString().padStart(2, "0")
+      })
+      io().emit("lastBalls", balls) // Emitir las últimas 4 balotas
+      console.log("Emitiendo lastBalls:", balls)
+    } else {
+      console.error("Error: balls no es un array válido.", balls)
+      io().emit("lastBalls", []) // Emitir un array vacío en caso de error
+    }
   }
 
   reset() {

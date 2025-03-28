@@ -30,6 +30,11 @@ app.get("/last-number", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "last-number", "index.html"))
 })
 
+// Ruta para servir la vista last-number-list
+app.get("/last-number-list", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "last-number-list", "index.html"))
+})
+
 // Endpoint para guardar el archivo CSV
 app.post("/save-csv", (req, res) => {
   const csvData = req.body.toString("utf8")
@@ -50,15 +55,23 @@ app.post("/save-csv", (req, res) => {
 io.on("connection", (socket) => {
   console.log("Nuevo cliente conectado")
 
+  // let lastBalls = []; // Eliminado
+
   socket.on("lastBall", (ballNumber) => {
-    io.emit("lastBall", ballNumber)
+    io.emit("lastBall", ballNumber) // Emitir la última balota marcada
+    // console.log("Servidor retransmitiendo lastBalls:", lastBalls); // Eliminado
     console.log("Servidor retransmitiendo lastBall:", ballNumber)
   })
 
+  socket.on("lastBalls", (balls) => {
+    io.emit("lastBalls", balls) // Emitir las últimas balotas marcadas
+    console.log("Servidor retransmitiendo lastBalls:", balls)
+  })
+
   socket.on("pageReloaded", () => {
-    // Emitir un evento lastBall con valor nulo para limpiar la vista
     io.emit("lastBall", null)
-    console.log("Página recargada, limpiando lastBall en las vistas.")
+    io.emit("lastBalls", [])
+    console.log("Página recargada, limpiando lastBall y lastBalls en las vistas.")
   })
 
   socket.on("disconnect", () => {
