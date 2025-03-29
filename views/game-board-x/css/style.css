@@ -1,0 +1,121 @@
+/* views/game-board-x/css/style.css */
+
+@import "./variables.css";
+@import "./grid-game-board-template.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: var(--font-size);
+  font-family: "Play", serif;
+  font-weight: var(--font-weight-regular);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+h1,
+h2,
+p {
+  margin-bottom: var(--grid-gap);
+  text-align: center;
+}
+
+h1 {
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: rgb(15, 82, 186);
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+p {
+  color: black;
+  font-size: 1.6rem;
+}
+
+.container {
+  padding: var(--grid-gap);
+  display: flex;
+  gap: var(--grid-gap);
+}
+.grid-container {
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+header,
+main {
+  width: 100%;
+}
+
+header {
+  background-color: rgb(115, 147, 179);
+  height: 48px;
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 128px;
+}
+.title {
+  margin-bottom: 0;
+}
+.subtitle {
+  color: gray;
+  font-size: 1.2rem;
+}
+.item {
+  list-style: none;
+}
+main {
+  flex-direction: column;
+}
+
+/* #grid-game-board-x {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+}
+
+.cell {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+}
+
+.letter {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.marked {
+  background-color: yellow;
+} */

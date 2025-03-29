@@ -1,0 +1,108 @@
+/* views/game-board-x/css/grid-game-board-template.css */
+
+/* Module */
+.module {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  border-radius: 8px;
+}
+.module > div {
+  margin-bottom: var(--grid-gap);
+}
+.module > div:last-child {
+  margin-bottom: 0;
+}
+
+/* Button */
+
+.btn {
+  background-color: var(--color-primary);
+  color: white;
+  font-size: var(--font-size);
+  font-family: "Play", serif;
+  font-weight: var(--font-weight-bold);
+  font-style: normal;
+  border: none;
+}
+.btn.lock {
+  cursor: default;
+  pointer-events: none;
+}
+.btn-primary {
+  font-size: 2rem;
+  padding: 16px 48px;
+  font-weight: var(--font-weight-bold);
+  border-radius: 4px;
+}
+.btn-primary.lock {
+  background-color: rgb(220, 220, 220);
+  color: rgb(150, 150, 150);
+}
+.text-button {
+  padding-left: 8px;
+}
+
+/* Game Board Module */
+#game-board-x {
+  background-color: rgb(36, 113, 163);
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* Grid Game Board */
+#grid-game-board-x {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+}
+#grid-game-board-x .group {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+}
+#grid-game-board-x .cell {
+  padding: 1px;
+}
+#grid-game-board-x .btn-ggb {
+  width: 100%;
+  height: 100%;
+  line-height: 0;
+  aspect-ratio: 1 / 1;
+  border: none;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#grid-game-board-x .letter .btn-ggb {
+  background-color: rgb(84, 153, 199);
+  font-size: 2.4rem;
+  font-weight: var(--font-weight-bold);
+  padding: 16px;
+  cursor: inherit;
+}
+#grid-game-board-x .num .btn-ggb {
+  background-color: rgb(251, 252, 252);
+  color: rgb(52, 73, 94);
+  font-size: 1.8rem;
+}
+#grid-game-board-x .num .btn-ggb.marked {
+  background-color: rgb(137, 148, 153);
+  color: rgb(250, 249, 246);
+}
+#grid-game-board-x .num .btn-ggb.marked:disabled {
+  cursor: not-allowed;
+}
+
+/* Border Radius Grid */
+#grid-game-board-x .group:first-child .cell:first-child .btn {
+  border-top-left-radius: 4px;
+}
+#grid-game-board-x .group:first-child .cell:last-child .btn {
+  border-top-right-radius: 4px;
+}
+#grid-game-board-x .group:last-child .cell:first-child .btn {
+  border-bottom-left-radius: 4px;
+}
+#grid-game-board-x .group:last-child .cell:last-child .btn {
+  border-bottom-right-radius: 4px;
+}

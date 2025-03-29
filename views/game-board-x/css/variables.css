@@ -1,0 +1,10 @@
+/* views/game-board-x/css/variables.css */
+
+:root {
+    --font-size: 1.6rem;
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+    --grid-gap: 16px;
+    --color-primary: rgb(96, 130, 182);
+    --bg-primary: rgb(229, 228, 226);
+  }

@@ -4,6 +4,8 @@ const socket = io()
 const ballNumbers = document.querySelectorAll(".num-2, .num-3, .num-4, .num-5")
 
 socket.on("lastBalls", (balls) => {
+  console.log("Recibiendo lastBalls:", balls) // Agregar log aquí
+
   if (Array.isArray(balls)) {
     // Limpiar la vista antes de actualizarla
     ballNumbers.forEach((ball) => (ball.textContent = ""))
