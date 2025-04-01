@@ -113,7 +113,7 @@ class GameBoard {
   reset() {
     this.markedBalls.clear()
     this.ballHistory = []
-    this.firstBallMarked = false // Restablecer la variable
+    this.firstBallMarked = false
     const markedButtons = document.querySelectorAll("#grid-game-board .btn-ggb.marked")
     markedButtons.forEach((button) => {
       button.classList.remove("marked")
@@ -121,6 +121,11 @@ class GameBoard {
     })
     this.updateLastBallDisplay(0)
     this.updateLastBallsList([])
+
+    // Emitir evento para limpiar la vista game-board-x
+    const event = new Event("gameReset")
+    window.dispatchEvent(event) // Emitir evento en el objeto window
+    console.log("Evento gameReset emitido desde game-board.js")
   }
 }
 

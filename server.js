@@ -34,8 +34,8 @@ app.get("/views/last-number-list", (req, res) => {
 })
 
 app.get("/views/game-board-x", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "game-board-x", "index.html"));
-});
+  res.sendFile(path.join(__dirname, "views", "game-board-x", "index.html"))
+})
 
 // Endpoint para guardar el archivo CSV
 app.post("/save-csv", (req, res) => {
@@ -74,7 +74,8 @@ io.on("connection", (socket) => {
 
   socket.on("pageReloaded", () => {
     io.emit("lastBall", null)
-    io.emit("lastBalls", []) // Limpiar la vista last-number-list
+    io.emit("lastBalls", [])
+    io.emit("pageReloaded") // Emitir evento para game-board-x
     console.log("Página recargada, limpiando lastBall y lastBalls en las vistas.")
   })
 

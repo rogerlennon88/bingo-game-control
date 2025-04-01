@@ -1,3 +1,5 @@
-import { gameBoard } from "./game-board-x.js"
+// views/game-board-x/js/main
 
-gameBoard.init()
+import { gameBoardX } from "./game-board-x.js"
+
+gameBoardX.init()
